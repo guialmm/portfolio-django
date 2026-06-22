@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{% block meta_description %}Guilherme Almeida — Engenharia de Software, INATEL. IA, Visão Computacional e Backend.{% endblock %}" />
+  <title>{% block title %}Guilherme Almeida{% endblock %}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  {% include "partials/navbar.html" %}
+
+  <main class="app">
+    {% if messages %}
+      <div class="container messages-container">
+        {% for message in messages %}
+          <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Feito com Django &amp; ☕ por
+        <a href="https://github.com/guialmm" target="_blank" rel="noopener">Guilherme Almeida</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
