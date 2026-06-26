@@ -1,0 +1,192 @@
+[
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "short_code": "DG",
+      "title": "DrowsyGuard",
+      "slug": "drowsyguard",
+      "description": "Sistema de detecção de sonolência em tempo real para motoristas usando webcam. Extrai métricas faciais com MediaPipe e classifica o estado de alerta com BiLSTM + MobileNetV2.",
+      "long_description": "DrowsyGuard é um sistema de detecção de sonolência em tempo real desenvolvido como projeto de portfólio de IA e Visão Computacional.\n\nO sistema utiliza a câmera do computador para capturar o rosto do motorista em tempo real, extraindo métricas faciais como EAR (Eye Aspect Ratio), MAR (Mouth Aspect Ratio), PERCLOS e estimativa de pose da cabeça com MediaPipe Face Mesh.\n\nEssas métricas alimentam um modelo híbrido: uma BiLSTM treinada nas sequências temporais das métricas, e um MobileNetV2 fine-tuneado no dataset UTA-RLDD (180 vídeos, 60 participantes, ~30h de dados rotulados). A fusão dos dois modelos produz a classificação: Alerta, Baixa Vigilância ou Sonolento.\n\nEm caso de detecção de sonolência, um alerta sonoro é disparado com cooldown configurável. A interface de demonstração exibe um overlay com bounding box, landmarks oculares e barras de probabilidade.",
+      "stack_tags": "Python, MediaPipe, OpenCV, TensorFlow, Keras, scikit-learn, pandas, pygame",
+      "github_url": "https://github.com/guialmm/DrowsyGuard",
+      "live_url": "",
+      "image": "",
+      "category": "ai",
+      "status": "completed",
+      "is_featured": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 2,
+    "fields": {
+      "short_code": "PF",
+      "title": "Pomoflow",
+      "slug": "pomoflow",
+      "description": "Timer Pomodoro disponível como CLI em Python e web app (PWA) — com histórico de sessões, estatísticas e suporte offline.",
+      "long_description": "Pomoflow é um timer Pomodoro multiplataforma: CLI em Python e web app progressiva (PWA) construída com React, TypeScript, Vite e Tailwind CSS.\n\nA versão CLI oferece uma interface de terminal com cores, sons de notificação e histórico de sessões salvo em JSON. A versão web é uma PWA instalável, com suporte offline via Service Worker, histórico de sessões persistido no localStorage e exibição de estatísticas de produtividade.\n\nO projeto foi desenvolvido para demonstrar a mesma funcionalidade implementada em dois paradigmas diferentes: linha de comando com Python e aplicação web moderna com React.",
+      "stack_tags": "Python, React, TypeScript, Vite, Tailwind CSS, PWA",
+      "github_url": "https://github.com/guialmm/pomoflow",
+      "live_url": "",
+      "image": "",
+      "category": "web",
+      "status": "completed",
+      "is_featured": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 3,
+    "fields": {
+      "short_code": "TF",
+      "title": "TaskFlow",
+      "slug": "taskflow",
+      "description": "Aplicação full-stack de gerenciamento de projetos com quadro Kanban, backend FastAPI, PostgreSQL e frontend React 18 + TypeScript.",
+      "long_description": "TaskFlow é uma aplicação full-stack de gerenciamento de projetos inspirada no Trello, com quadro Kanban drag-and-drop.\n\nO backend é uma API REST construída com FastAPI e PostgreSQL, com autenticação JWT, paginação e validação via Pydantic. O frontend foi desenvolvido em React 18 com TypeScript e TailwindCSS, consumindo a API via React Query.\n\nO projeto demonstra a separação clara entre frontend e backend, design de API RESTful, autenticação stateless e boas práticas de organização de código em aplicações de médio porte.",
+      "stack_tags": "FastAPI, PostgreSQL, React 18, TypeScript, TailwindCSS, JWT, Docker",
+      "github_url": "https://github.com/guialmm/taskflow",
+      "live_url": "",
+      "image": "",
+      "category": "web",
+      "status": "completed",
+      "is_featured": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 4,
+    "fields": {
+      "short_code": "ET",
+      "title": "Eye Tracking System",
+      "slug": "eye-tracking-system",
+      "description": "Sistema de rastreamento ocular com IA usando Dlib e PyTorch para detectar e rastrear o ponto de fixação do olhar em tempo real.",
+      "long_description": "Sistema de rastreamento ocular desenvolvido durante iniciação científica no INATEL. Utiliza Dlib para detecção de face e extração de landmarks faciais, combinado com PyTorch para estimar o ponto de olhar (gaze point) na tela.\n\nO pipeline processa frames da webcam em tempo real, detecta os olhos, extrai features das regiões oculares e alimenta um modelo de regressão que estima as coordenadas (x, y) do ponto de fixação na tela. Os resultados são visualizados com OpenCV.",
+      "stack_tags": "Python, PyTorch, Dlib, OpenCV, NumPy",
+      "github_url": "https://github.com/guialmm/ic-eyetracking",
+      "live_url": "",
+      "image": "",
+      "category": "ai",
+      "status": "completed",
+      "is_featured": false,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 5,
+    "fields": {
+      "short_code": "PD",
+      "title": "Portfolio Django",
+      "slug": "portfolio-django",
+      "description": "Este próprio site — portfólio pessoal construído com Django 5, design inspirado no Prof. Christopher Lima, dark theme, admin CMS e blog.",
+      "long_description": "Este site é em si um projeto do portfólio. Construído com Django 5, demonstra organização de um projeto Django de médio porte com múltiplos apps, admin customizado e deploy-ready.\n\nO design é inspirado no site do Prof. Christopher Lima do INATEL, com dark/light theme via CSS variables, reveal animations com IntersectionObserver, glassmorphism no nav e CSS customizado sem frameworks externos.\n\nO conteúdo é gerenciado via Django admin: projetos, skills e mensagens de contato são CRUD direto no banco, sem necessidade de tocar no código.",
+      "stack_tags": "Python, Django 5, SQLite, Whitenoise, HTML, CSS, JavaScript",
+      "github_url": "https://github.com/guialmm/portfolio-django",
+      "live_url": "",
+      "image": "",
+      "category": "web",
+      "status": "in_progress",
+      "is_featured": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 1,
+    "fields": { "name": "Python", "category": "lang", "order": 1 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 2,
+    "fields": { "name": "Java", "category": "lang", "order": 2 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 3,
+    "fields": { "name": "C++", "category": "lang", "order": 3 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 4,
+    "fields": { "name": "TypeScript", "category": "lang", "order": 4 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 5,
+    "fields": { "name": "Django", "category": "framework", "order": 1 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 6,
+    "fields": { "name": "FastAPI", "category": "framework", "order": 2 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 7,
+    "fields": { "name": "React", "category": "framework", "order": 3 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 8,
+    "fields": { "name": "TailwindCSS", "category": "framework", "order": 4 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 9,
+    "fields": { "name": "TensorFlow / Keras", "category": "ai", "order": 1 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 10,
+    "fields": { "name": "PyTorch", "category": "ai", "order": 2 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 11,
+    "fields": { "name": "OpenCV", "category": "ai", "order": 3 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 12,
+    "fields": { "name": "MediaPipe", "category": "ai", "order": 4 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 13,
+    "fields": { "name": "scikit-learn", "category": "ai", "order": 5 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 14,
+    "fields": { "name": "Git / GitHub", "category": "tool", "order": 1 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 15,
+    "fields": { "name": "Docker", "category": "tool", "order": 2 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 16,
+    "fields": { "name": "Linux", "category": "tool", "order": 3 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 17,
+    "fields": { "name": "PostgreSQL", "category": "db", "order": 1 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 18,
+    "fields": { "name": "SQLite", "category": "db", "order": 2 }
+  }
+]
