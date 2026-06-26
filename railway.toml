@@ -1,3 +1,5 @@
+# Railway config (requer plano pago)
+# Para deploy gratuito, use Render com render.yaml
 [build]
 builder = "nixpacks"
 
