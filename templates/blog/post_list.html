@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Blog — Guilherme Almeida{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="kicker">Escrita técnica</span>
+      <h1 class="hero-title">Blog</h1>
+      <p class="hero-lede">Notas sobre IA, machine learning, desenvolvimento backend e aprendizados do dia a dia como estudante de engenharia de software.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0">
+  <div class="container">
+
+    {% if posts %}
+      <div class="material-list reveal">
+        {% for post in posts %}
+          <a href="{% url 'blog_detail' post.slug %}" class="material-row" style="text-decoration:none;color:inherit;">
+            <div class="material-icon t-post">ART</div>
+            <div class="material-meta">
+              <span class="material-title">{{ post.title }}</span>
+              <div class="material-tags">
+                {% for tag in post.get_tag_list %}
+                  <span class="material-tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="material-date">{{ post.created_at|date:"d/m/Y" }}</div>
+            <div class="material-count">{{ post.body|wordcount }} palavras</div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state reveal">
+        Artigos em breve. Acompanhe no <a href="https://github.com/guialmm" target="_blank" rel="noopener" style="color:var(--accent)">GitHub</a>.
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

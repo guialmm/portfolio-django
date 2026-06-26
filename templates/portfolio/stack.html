@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Stack — Guilherme Almeida{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="kicker">Tecnologias</span>
+      <h1 class="hero-title">Stack</h1>
+      <p class="hero-lede">Linguagens, frameworks, bibliotecas e ferramentas que uso — do backend ao machine learning.</p>
+    </div>
+
+    <div class="stats-strip reveal">
+      <div class="stat">
+        <div class="stat-num">{{ skill_count }}<span class="suffix">+</span></div>
+        <div class="stat-label">Tecnologias</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<span class="suffix">+</span></div>
+        <div class="stat-label">Anos estudando</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<span class="suffix">+</span></div>
+        <div class="stat-label">Projetos reais</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 24px">
+  <div class="container">
+
+    <div class="filter-bar reveal">
+      <a href="{% url 'stack' %}" class="chip {% if not active_cat %}active{% endif %}">Todas</a>
+      {% for key, label in categories %}
+        <a href="{% url 'stack' %}?cat={{ key }}" class="chip {% if active_cat == key %}active{% endif %}">{{ label }}</a>
+      {% endfor %}
+    </div>
+
+    {% if active_cat %}
+      <div class="stack-category reveal">
+        <div class="stack-grid">
+          {% for skill in skills %}
+            <div class="stack-item">
+              <div class="stack-item-name">{{ skill.name }}</div>
+              <div class="stack-item-cat">{{ skill.get_category_display }}</div>
+            </div>
+          {% empty %}
+            <div class="empty-state">Nenhuma skill nesta categoria ainda.</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      {% regroup skills by get_category_display as skill_groups %}
+      {% for group in skill_groups %}
+        <div class="stack-category reveal">
+          <div class="stack-category-label">{{ group.grouper }}</div>
+          <div class="stack-grid">
+            {% for skill in group.list %}
+              <div class="stack-item">
+                <div class="stack-item-name">{{ skill.name }}</div>
+                <div class="stack-item-cat">{{ skill.get_category_display }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="empty-state">Skills serão adicionadas em breve.</div>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}

@@ -6,39 +6,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="{% block meta_description %}Guilherme Almeida — Engenharia de Software, INATEL. IA, Visão Computacional e Backend.{% endblock %}" />
   <title>{% block title %}Guilherme Almeida{% endblock %}</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   {% block extra_css %}{% endblock %}
 </head>
 <body>
-
   <div class="bg-decor" aria-hidden="true"></div>
 
-  {% include "partials/navbar.html" %}
+  <nav class="nav" role="navigation">
+    <div class="container nav-inner">
+      <a href="{% url 'home' %}" class="nav-brand">
+        <span class="nav-mark">GA</span>
+        <span>Guilherme Almeida</span>
+        <span class="nav-brand-sub">· Software Engineer</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="{% url 'project_list' %}" {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}class="active"{% endif %}>Projetos</a></li>
+        <li><a href="{% url 'stack' %}" {% if request.resolver_match.url_name == 'stack' %}class="active"{% endif %}>Stack</a></li>
+        <li><a href="{% url 'blog_list' %}" {% if 'blog' in request.resolver_match.url_name %}class="active"{% endif %}>Blog</a></li>
+        <li><a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>Contato</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
 
   <main class="app">
     {% if messages %}
-      <div class="container messages-container">
+      <div class="container messages-wrap">
         {% for message in messages %}
-          <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
       </div>
     {% endif %}
-
     {% block content %}{% endblock %}
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>
-        Feito com Django &amp; ☕ por
-        <a href="https://github.com/guialmm" target="_blank" rel="noopener">Guilherme Almeida</a>
-      </p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-name">Guilherme Almeida</div>
+          <div class="footer-brand-desc">Estudante de Engenharia de Software no INATEL, focado em IA, Visão Computacional e Backend.</div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="{% url 'project_list' %}">Projetos</a>
+          <a href="{% url 'stack' %}">Stack</a>
+          <a href="{% url 'blog_list' %}">Blog</a>
+          <a href="{% url 'contact' %}">Contato</a>
+        </div>
+        <div class="footer-col">
+          <h4>Projetos</h4>
+          <a href="https://github.com/guialmm/DrowsyGuard" target="_blank" rel="noopener">DrowsyGuard</a>
+          <a href="https://github.com/guialmm/pomoflow" target="_blank" rel="noopener">Pomoflow</a>
+          <a href="https://github.com/guialmm/taskflow" target="_blank" rel="noopener">TaskFlow</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="https://github.com/guialmm" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/guilherme-almeida2/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:guialm211004@gmail.com">E-mail</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Guilherme Almeida · INATEL</span>
+        <span>Feito com <a href="https://www.djangoproject.com" target="_blank" rel="noopener">Django</a></span>
+      </div>
     </div>
   </footer>
 
