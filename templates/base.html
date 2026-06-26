@@ -25,7 +25,6 @@
       <ul class="nav-links">
         <li><a href="{% url 'project_list' %}" {% if request.resolver_match.url_name == 'project_list' or request.resolver_match.url_name == 'project_detail' %}class="active"{% endif %}>Projetos</a></li>
         <li><a href="{% url 'stack' %}" {% if request.resolver_match.url_name == 'stack' %}class="active"{% endif %}>Stack</a></li>
-        <li><a href="{% url 'blog_list' %}" {% if 'blog' in request.resolver_match.url_name %}class="active"{% endif %}>Blog</a></li>
         <li><a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>Contato</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
@@ -57,7 +56,6 @@
           <h4>Navegação</h4>
           <a href="{% url 'project_list' %}">Projetos</a>
           <a href="{% url 'stack' %}">Stack</a>
-          <a href="{% url 'blog_list' %}">Blog</a>
           <a href="{% url 'contact' %}">Contato</a>
         </div>
         <div class="footer-col">

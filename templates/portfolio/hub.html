@@ -15,7 +15,7 @@
       <div class="hub-affil">Engenharia de Software · INATEL · Santa Rita do Sapucaí, MG</div>
     </div>
 
-    <div class="hub-grid">
+    <div class="hub-grid" style="grid-template-columns: repeat(3, 1fr)">
       <a href="{% url 'project_list' %}" class="hub-card">
         <div class="hub-card-kicker">Portfólio</div>
         <div class="hub-card-label">
@@ -39,20 +39,6 @@
         <div class="hub-card-desc">Python, Django, FastAPI, React, TensorFlow, OpenCV e mais — linguagens, frameworks e ferramentas que uso no dia a dia.</div>
         <div class="hub-card-meta">
           {% for skill in skills_preview %}{{ skill.name }}{% if not forloop.last %} · {% endif %}{% endfor %}
-        </div>
-      </a>
-
-      <a href="{% url 'blog_list' %}" class="hub-card">
-        <div class="hub-card-kicker">Escrita técnica</div>
-        <div class="hub-card-label">
-          Blog
-          <span class="hub-card-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-        <div class="hub-card-desc">Artigos sobre IA, machine learning, desenvolvimento backend e aprendizados do dia a dia como estudante de engenharia.</div>
-        <div class="hub-card-meta">
-          {% if blog_count %}{{ blog_count }} artigo{{ blog_count|pluralize:"s" }} publicado{{ blog_count|pluralize:"s" }}{% else %}Em breve{% endif %}
         </div>
       </a>
 

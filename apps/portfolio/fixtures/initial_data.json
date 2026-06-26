@@ -91,6 +91,7 @@
       "stack_tags": "Python, PyTorch, Dlib, OpenCV, NumPy",
       "github_url": "https://github.com/guialmm/ic-eyetracking",
       "live_url": "",
+      "paper_url": "https://raw.githubusercontent.com/guialmm/ic-eyetracking/main/Gaze_Tracking.pdf",
       "image": "",
       "category": "ai",
       "status": "completed",

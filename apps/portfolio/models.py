@@ -22,6 +22,7 @@ class Project(models.Model):
     stack_tags = models.CharField(max_length=300, help_text="Comma-separated: Python, Django, PostgreSQL")
     github_url = models.URLField(blank=True)
     live_url = models.URLField(blank=True)
+    paper_url = models.URLField(blank=True, help_text="Link para artigo científico (PDF)")
     image = models.ImageField(upload_to="projects/", blank=True, null=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default="other")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="completed")

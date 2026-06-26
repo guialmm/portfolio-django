@@ -6,18 +6,10 @@ from .forms import ContactForm
 
 def hub(request):
     project_count = Project.objects.count()
-    blog_count = 0
-    try:
-        from apps.blog.models import Post
-        blog_count = Post.objects.filter(published=True).count()
-    except Exception:
-        pass
-
     skills_preview = Skill.objects.filter(category="lang").order_by("order")[:6]
 
     return render(request, "portfolio/hub.html", {
         "project_count": project_count,
-        "blog_count": blog_count,
         "skills_preview": skills_preview,
     })
 
