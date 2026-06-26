@@ -3,12 +3,12 @@ import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env(DEBUG=(bool, True))
+env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-change-me-in-production")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1", ".railway.app", ".up.railway.app"])
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -17,7 +17,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # local
     "apps.portfolio",
     "apps.blog",
 ]
@@ -53,12 +52,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Database: usa PostgreSQL via DATABASE_URL se disponível, senão SQLite
+if env("DATABASE_URL", default=None):
+    DATABASES = {"default": env.db("DATABASE_URL")}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

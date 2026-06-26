@@ -1,0 +1,1 @@
+web: python manage.py migrate && python manage.py loaddata apps/portfolio/fixtures/initial_data.json || true && python manage.py collectstatic --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
