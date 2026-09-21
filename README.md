@@ -1,5 +1,7 @@
 # Portfolio Django
 
+**[Demo ao vivo](https://portfolio-django-opal.vercel.app)**
+
 Portfólio pessoal construído com **Django 5** — dark theme, CSS customizado, admin CMS e blog técnico.
 
 ## Stack
@@ -83,15 +85,35 @@ Acesse `http://localhost:8000` para o site e `http://localhost:8000/admin/` para
 
 ## Deploy
 
-Pronto para deploy em [Railway](https://railway.app) ou [Render](https://render.com):
+Rodando na [Vercel](https://vercel.com) (function serverless via `@vercel/python`) +
+[Aiven](https://aiven.io) PostgreSQL (plano free, sem cartão). Também dá pra usar
+[Render](https://render.com) (`render.yaml` incluso), mais simples por rodar como
+processo persistente de verdade — a Vercel não tem filesystem persistente, então
+o SQLite não serve, precisa de um Postgres externo.
+
+Variáveis de ambiente em produção:
 
 ```bash
-# Variáveis necessárias em produção
 DEBUG=False
 SECRET_KEY=<chave-longa-e-aleatória>
-DATABASE_URL=postgres://...
-ALLOWED_HOSTS=seudominio.com
-
-# Antes de subir
-python manage.py collectstatic
+DATABASE_URL=postgres://user:senha@host:porta/banco?sslmode=require
+ALLOWED_HOSTS=seudominio.com   # opcional — já inclui .vercel.app e .onrender.com por padrão
 ```
+
+Vercel: `vercel.json` + `build_files.sh` cuidam do build (instala dependências e
+roda `collectstatic`); migrations e `loaddata` do fixture precisam rodar uma vez
+manualmente contra o banco (não tem processo de start persistente pra rodar isso
+a cada deploy, diferente do Render):
+
+```bash
+DATABASE_URL=... SECRET_KEY=... python manage.py migrate
+DATABASE_URL=... SECRET_KEY=... python manage.py loaddata apps/portfolio/fixtures/initial_data.json
+DATABASE_URL=... SECRET_KEY=... python manage.py createsuperuser
+```
+
+### Limitações
+
+- Formulário de contato salva no Postgres normalmente (funciona igual em
+  qualquer um dos dois hosts) — a limitação de storage efêmero é só pra
+  uploads de imagem via admin (`media/`), que não persistem entre deploys
+  na Vercel.
