@@ -96,7 +96,7 @@
       "category": "ai",
       "status": "completed",
       "is_featured": true,
-      "order": -1,
+      "order": 0,
       "created_at": "2025-01-01T00:00:00Z"
     }
   },
@@ -156,7 +156,7 @@
       "category": "web",
       "status": "completed",
       "is_featured": true,
-      "order": 0,
+      "order": 1,
       "created_at": "2026-09-21T00:00:00Z"
     }
   },
