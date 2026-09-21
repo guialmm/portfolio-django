@@ -8,10 +8,14 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-change-me-in-production")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS",
-    default=["localhost", "127.0.0.1", ".railway.app", ".up.railway.app", ".onrender.com", ".vercel.app"],
-)
+_DEFAULT_ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".railway.app", ".up.railway.app", ".onrender.com", ".vercel.app"]
+# Mesmo motivo do EMAIL_PORT acima: se a env var existir mas vazia
+# (plataforma pré-populou do .env.example sem o usuário preencher),
+# env.list() devolve [''] em vez do default — o que bloquearia
+# TODAS as requisições com DisallowedHost.
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=_DEFAULT_ALLOWED_HOSTS) or _DEFAULT_ALLOWED_HOSTS
+if ALLOWED_HOSTS == [""]:
+    ALLOWED_HOSTS = _DEFAULT_ALLOWED_HOSTS
 
 # Render/Railway terminam TLS no proxy e repassam por HTTP com esse header —
 # sem isso o Django acha que a requisição é insegura e quebra o CSRF check
@@ -95,7 +99,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
-EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+# env.int() quebra se a env var existir mas estiver vazia (a Vercel
+# pré-popula em branco as chaves que acha no .env.example) — cai pro
+# default nesse caso também, não só quando a var está ausente.
+EMAIL_PORT = int(env("EMAIL_PORT", default="587") or 587)
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
