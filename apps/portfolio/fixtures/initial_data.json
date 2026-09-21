@@ -129,15 +129,35 @@
       "slug": "portfolio-django",
       "description": "Este próprio site — portfólio pessoal construído com Django 5. Dark/light theme, admin CMS para gerenciar projetos sem tocar no código, blog e formulário de contato.",
       "long_description": "Este site é em si um projeto do portfólio, construído com Django 5.\n\nO design usa CSS customizado com variáveis de tema (dark/light), reveal animations via IntersectionObserver, glassmorphism no nav e footer grid — sem frameworks CSS externos.\n\nO conteúdo é gerenciado via Django admin: projetos, skills e mensagens de contato são CRUD direto no banco. A fixture `initial_data.json` permite reinstalar tudo com um único comando.",
-      "stack_tags": "Python, Django 5, SQLite, Whitenoise, HTML, CSS, JavaScript",
+      "stack_tags": "Python, Django 5, PostgreSQL, Whitenoise, HTML, CSS, JavaScript",
       "github_url": "https://github.com/guialmm/portfolio-django",
-      "live_url": "",
+      "live_url": "https://portfolio-django-opal.vercel.app",
       "image": "",
       "category": "web",
-      "status": "in_progress",
+      "status": "completed",
       "is_featured": false,
-      "order": 7,
+      "order": 8,
       "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 8,
+    "fields": {
+      "short_code": "OL",
+      "title": "Olist E-Commerce Analytics",
+      "slug": "olist-ecommerce-analytics",
+      "description": "Dashboard de analytics sobre dados reais de e-commerce brasileiro (~100 mil pedidos, 2016-2018). MySQL + FastAPI + React, com filtros cruzados, export CSV e um modelo de ML simulando risco de avaliação negativa.",
+      "long_description": "Dashboard de analytics construído sobre o Brazilian E-Commerce Public Dataset by Olist — dados reais e anonimizados de ~100 mil pedidos entre 2016 e 2018.\n\nOs dados são carregados via pipeline de ETL (pandas) num schema relacional próprio em MySQL, servidos por uma API FastAPI protegida por autenticação JWT. O dashboard em React + TypeScript + Tailwind + Framer Motion + Recharts mostra receita, funil de pedidos, performance de entrega, categorias, receita por estado e mapa de calor geográfico (Leaflet).\n\nFeatures de dashboard interativo real: filtros sincronizados por URL (compartilháveis), cross-filtering entre gráficos (clicar num estado filtra o resto do dashboard), exportação em CSV por gráfico e anotações de calendário na série temporal de receita (Black Friday, Natal, Dia das Mães).\n\nInclui também um modelo de ML (regressão logística, scikit-learn) que estima a probabilidade de uma avaliação negativa a partir do prazo de entrega, com simulador interativo no próprio dashboard.\n\nDeploy em produção: Vercel (frontend) + Render (API) + Aiven (MySQL gerenciado), 100% em camadas gratuitas.",
+      "stack_tags": "MySQL, FastAPI, Python, pandas, scikit-learn, React, TypeScript, Tailwind CSS, Framer Motion, Recharts, Leaflet, Docker",
+      "github_url": "https://github.com/guialmm/olist-ecommerce-analytics",
+      "live_url": "https://olist-ecommerce-analytics-nine.vercel.app",
+      "image": "",
+      "category": "web",
+      "status": "completed",
+      "is_featured": true,
+      "order": 0,
+      "created_at": "2026-09-21T00:00:00Z"
     }
   },
   {
@@ -229,5 +249,10 @@
     "model": "portfolio.skill",
     "pk": 18,
     "fields": { "name": "SQLite", "category": "db", "order": 2 }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 19,
+    "fields": { "name": "MySQL", "category": "db", "order": 3 }
   }
 ]
