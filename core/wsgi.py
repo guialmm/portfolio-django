@@ -14,3 +14,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 application = get_wsgi_application()
+
+# O runtime Python da Vercel (@vercel/python) procura uma variável `app`
+# WSGI nesse módulo — sem isso ele não sabe como servir o Django.
+app = application
