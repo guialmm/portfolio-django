@@ -89,7 +89,13 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Aninhado sob mais uma pasta "static/" de propósito: a Vercel publica o
+# conteúdo de STATIC_ROOT direto na raiz do site (distDir do build
+# estático), então pra bater com STATIC_URL=/static/ o arquivo final
+# precisa estar em staticfiles/static/css/styles.css, não staticfiles/css/...
+# O Render/WhiteNoise não se importa com esse nível extra — mapeiam
+# STATIC_URL pro conteúdo de STATIC_ROOT do mesmo jeito.
+STATIC_ROOT = BASE_DIR / "staticfiles" / "static"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
